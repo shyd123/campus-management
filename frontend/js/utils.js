@@ -1,0 +1,200 @@
+// API基础URL
+const API_BASE_URL = 'http://localhost:8080/api';
+
+// 从本地存储获取token
+function getToken() {
+    return localStorage.getItem('token');
+}
+
+// 保存token到本地存储
+function saveToken(token) {
+    localStorage.setItem('token', token);
+}
+
+// 从本地存储获取用户信息
+function getUserInfo() {
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
+}
+
+// 保存用户信息到本地存储
+function saveUserInfo(user) {
+    localStorage.setItem('user', JSON.stringify(user));
+}
+
+// 清除本地存储的token和用户信息
+function clearAuthInfo() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+}
+
+// 检查是否已登录
+function isLoggedIn() {
+    return !!getToken();
+}
+
+// 通用API请求函数
+async function apiRequest(endpoint, method = 'GET', data = null) {
+    const url = `${API_BASE_URL}${endpoint}`;
+    const headers = {
+        'Content-Type': 'application/json'
+    };
+
+    // 如果有token，添加到请求头
+    const token = getToken();
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const options = {
+        method,
+        headers
+    };
+
+    // 如果有数据，添加到请求体
+    if (data) {
+        options.body = JSON.stringify(data);
+    }
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+
+        // 检查响应状态
+        if (result.code !== 200) {
+            throw new Error(result.message || '请求失败');
+        }
+
+        return result.data;
+    } catch (error) {
+        console.error('API请求错误:', error);
+        throw error;
+    }
+}
+
+// 显示消息
+function showMessage(elementId, message, type = 'error') {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = message;
+        element.className = `message ${type}`;
+        
+        // 3秒后自动隐藏
+        setTimeout(() => {
+            element.textContent = '';
+            element.className = 'message';
+        }, 3000);
+    }
+}
+
+// 跳转到指定页面
+function redirectTo(page) {
+    window.location.href = page;
+}
+
+// 验证表单
+function validateForm(formId) {
+    const form = document.getElementById(formId);
+    return form.checkValidity();
+}
+
+// 获取表单数据
+function getFormData(formId) {
+    const form = document.getElementById(formId);
+    const formData = {};
+    
+    Array.from(form.elements).forEach(element => {
+        if (element.name && element.value) {
+            formData[element.name] = element.value;
+        }
+    });
+    
+    return formData;
+}
+
+// 格式化日期
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+// 获取当前日期
+function getCurrentDate() {
+    return formatDate(new Date());
+}
+
+// 生成随机ID
+function generateId() {
+    return Math.floor(Math.random() * 1000000);
+}
+
+// 深拷贝对象
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+// 检查权限
+function checkPermission(requiredRole) {
+    const user = getUserInfo();
+    if (!user) {
+        return false;
+    }
+    
+    const role = user.role.toUpperCase();
+    // ADMIN拥有所有权限
+    if (role === 'ADMIN') {
+        return true;
+    }
+    
+    return role === requiredRole;
+}
+
+// 初始化页面
+function initPage() {
+    // 检查是否已登录
+    if (!isLoggedIn()) {
+        redirectTo('login.html');
+        return;
+    }
+
+    // 显示用户信息
+    const userInfo = getUserInfo();
+    if (userInfo) {
+        const userInfoElement = document.getElementById('user-info');
+        if (userInfoElement) {
+            userInfoElement.textContent = `欢迎，${userInfo.username} (${userInfo.role})`;
+        }
+    }
+
+    // 绑定退出登录事件
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            clearAuthInfo();
+            redirectTo('login.html');
+        });
+    }
+}
+
+// 导出工具函数
+window.utils = {
+    getToken,
+    saveToken,
+    getUserInfo,
+    saveUserInfo,
+    clearAuthInfo,
+    isLoggedIn,
+    apiRequest,
+    showMessage,
+    redirectTo,
+    validateForm,
+    getFormData,
+    formatDate,
+    getCurrentDate,
+    generateId,
+    deepClone,
+    checkPermission,
+    initPage
+};

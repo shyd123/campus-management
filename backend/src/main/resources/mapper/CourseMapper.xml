@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.CourseDao">
+
+    <resultMap id="courseMap" type="com.hclx.vip2412_backend.entity.Course">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="class_id" property="classId" />
+        <result column="classroom_id" property="classroomId" />
+        <result column="subject_id" property="subjectId" />
+        <result column="teacher_id" property="teacherId" />
+        <result column="weekday" property="weekday" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="class_name" property="className" />
+        <result column="classroom_name" property="classroomName" />
+        <result column="subject_name" property="subjectName" />
+        <result column="teacher_name" property="teacherName" />
+        <result column="col_count" property="colCount" />
+        <result column="row_count" property="rowCount" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="courseMap">
+        SELECT c.*, 
+               cl.name AS class_name, 
+               cr.name AS classroom_name, 
+               s.name AS subject_name, 
+               u.username AS teacher_name,
+               cr.row_count AS row_count,
+               cr.col_count AS col_count
+        FROM sys_course c
+        LEFT JOIN sys_class cl ON c.class_id = cl.id
+        LEFT JOIN sys_classroom cr ON c.classroom_id = cr.id
+        LEFT JOIN sys_subject s ON c.subject_id = s.id
+        LEFT JOIN sys_user u ON c.teacher_id = u.id
+    </select>
+
+    <select id="selectById" resultMap="courseMap">
+        SELECT c.*, 
+               cl.name AS class_name, 
+               cr.name AS classroom_name, 
+               s.name AS subject_name, 
+               u.username AS teacher_name,
+               cr.row_count AS row_count,
+               cr.col_count AS col_count
+        FROM sys_course c
+        LEFT JOIN sys_class cl ON c.class_id = cl.id
+        LEFT JOIN sys_classroom cr ON c.classroom_id = cr.id
+        LEFT JOIN sys_subject s ON c.subject_id = s.id
+        LEFT JOIN sys_user u ON c.teacher_id = u.id
+        WHERE c.id = #{id}
+    </select>
+
+    <select id="selectByTeacherIdAndWeekday" resultMap="courseMap">
+        SELECT c.*, 
+               cl.name AS class_name, 
+               cr.name AS classroom_name, 
+               s.name AS subject_name, 
+               u.username AS teacher_name,
+               cr.row_count AS row_count,
+               cr.col_count AS col_count
+        FROM sys_course c
+        LEFT JOIN sys_class cl ON c.class_id = cl.id
+        LEFT JOIN sys_classroom cr ON c.classroom_id = cr.id
+        LEFT JOIN sys_subject s ON c.subject_id = s.id
+        LEFT JOIN sys_user u ON c.teacher_id = u.id
+        WHERE c.teacher_id = #{teacherId} AND c.weekday = #{weekday}
+    </select>
+
+    <insert id="insert" parameterType="com.hclx.vip2412_backend.entity.Course" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_course (name, class_id, classroom_id, subject_id, teacher_id, weekday, start_time, end_time, create_time, update_time)
+        VALUES (#{name}, #{classId}, #{classroomId}, #{subjectId}, #{teacherId}, #{weekday}, #{startTime}, #{endTime}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.hclx.vip2412_backend.entity.Course">
+        UPDATE sys_course
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="classId != null">class_id = #{classId},</if>
+            <if test="classroomId != null">classroom_id = #{classroomId},</if>
+            <if test="subjectId != null">subject_id = #{subjectId},</if>
+            <if test="teacherId != null">teacher_id = #{teacherId},</if>
+            <if test="weekday != null">weekday = #{weekday},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM sys_course WHERE id = #{id}
+    </delete>
+
+  <!-- 根据班级ID查询课程 -->
+  <select id="selectByClassId" parameterType="java.lang.Integer" resultMap="courseMap">
+    SELECT
+      c.id,
+      c.name,
+      c.class_id,
+      cl.name AS class_name,
+      c.classroom_id,
+      cr.name AS classroom_name,
+      c.subject_id,
+      s.name AS subject_name,
+      c.teacher_id,
+      u.username AS teacher_name,
+      c.weekday,
+      c.start_time,
+      c.end_time,
+      cr.row_count AS row_count,
+      cr.col_count AS col_count
+    FROM
+      sys_course c
+    LEFT JOIN sys_class cl ON c.class_id = cl.id
+    LEFT JOIN sys_classroom cr ON c.classroom_id = cr.id
+    LEFT JOIN sys_subject s ON c.subject_id = s.id
+    LEFT JOIN sys_user u ON c.teacher_id = u.id
+    WHERE
+      c.class_id = #{classId}
+  </select>
+
+  <!-- 根据教师ID查询课程 -->
+  <select id="selectByTeacherId" parameterType="java.lang.Integer" resultMap="courseMap">
+    SELECT
+      c.id,
+      c.name,
+      c.class_id,
+      cl.name AS class_name,
+      c.classroom_id,
+      cr.name AS classroom_name,
+      c.subject_id,
+      s.name AS subject_name,
+      c.teacher_id,
+      u.username AS teacher_name,
+      c.weekday,
+      c.start_time,
+      c.end_time,
+      cr.row_count AS row_count,
+      cr.col_count AS col_count
+    FROM
+      sys_course c
+    LEFT JOIN sys_class cl ON c.class_id = cl.id
+    LEFT JOIN sys_classroom cr ON c.classroom_id = cr.id
+    LEFT JOIN sys_subject s ON c.subject_id = s.id
+    LEFT JOIN sys_user u ON c.teacher_id = u.id
+    WHERE
+      c.teacher_id = #{teacherId}
+  </select>
+
+    <sql id="aaa">
+        select * from tablename
+        <where>
+            <choose>
+                <when test="classId != null">
+                    classId = #{classId}
+                </when>
+                <when test="teacherId != null">
+                    teacherId = #{teacherId}
+                </when>
+            </choose>
+        </where>
+    </sql>
+</mapper>

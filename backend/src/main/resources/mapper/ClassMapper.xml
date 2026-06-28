@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.ClassDao">
+
+    <resultMap id="classMap" type="ClassInfo">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="headmaster_id" property="headmasterId" />
+        <result column="headmaster_name" property="headmasterName" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="classMap">
+        SELECT c.*, u.username AS headmaster_name
+        FROM sys_class c
+        LEFT JOIN sys_user u ON c.headmaster_id = u.id
+    </select>
+
+    <select id="selectById" resultMap="classMap">
+        SELECT c.*, u.username AS headmaster_name
+        FROM sys_class c
+        LEFT JOIN sys_user u ON c.headmaster_id = u.id
+        WHERE c.id = #{id}
+    </select>
+
+    <select id="selectByHeadmasterId" resultMap="classMap">
+        SELECT c.*, u.username AS headmaster_name
+        FROM sys_class c
+        LEFT JOIN sys_user u ON c.headmaster_id = u.id
+        WHERE c.headmaster_id = #{headmasterId}
+    </select>
+
+    <insert id="insert" parameterType="ClassInfo" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_class (name, headmaster_id, create_time, update_time)
+        VALUES (#{name}, #{headmasterId}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="ClassInfo">
+        UPDATE sys_class
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="headmasterId != null">headmaster_id = #{headmasterId},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM sys_class WHERE id = #{id}
+    </delete>
+
+</mapper>

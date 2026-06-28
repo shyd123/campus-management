@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.SeatArrangementDao">
+
+    <resultMap id="seatArrangementMap" type="SeatArrangement">
+        <id column="id" property="id" />
+        <result column="course_id" property="courseId" />
+        <result column="student_id" property="studentId" />
+        <result column="student_name" property="studentName" />
+        <result column="row" property="row" />
+        <result column="col" property="col" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectByCourseId" resultMap="seatArrangementMap">
+        SELECT sa.*, s.name AS student_name
+        FROM sys_seat_arrangement sa
+        LEFT JOIN sys_student s ON sa.student_id = s.id
+        WHERE sa.course_id = #{courseId}
+    </select>
+
+    <select id="selectByClassId" resultMap="seatArrangementMap">
+        SELECT sa.*, s.name AS student_name
+        FROM sys_seat_arrangement sa
+        LEFT JOIN sys_student s ON sa.student_id = s.id
+        LEFT JOIN sys_course c ON sa.course_id = c.id
+        WHERE c.class_id = #{classId}
+    </select>
+
+    <insert id="batchInsert">
+        INSERT INTO sys_seat_arrangement (course_id, student_id, student_name, `row`, `col`, create_time, update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.courseId}, #{item.studentId}, #{item.studentName}, #{item.row}, #{item.col}, NOW(), NOW())
+        </foreach>
+    </insert>
+
+    <delete id="deleteByCourseId">
+        DELETE FROM sys_seat_arrangement WHERE course_id = #{courseId}
+    </delete>
+
+</mapper>

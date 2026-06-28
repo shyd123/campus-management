@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.SubjectDao">
+
+    <resultMap id="subjectMap" type="com.hclx.vip2412_backend.entity.Subject">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="subjectMap">
+        SELECT * FROM sys_subject
+    </select>
+
+    <select id="selectById" resultMap="subjectMap">
+        SELECT * FROM sys_subject WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.hclx.vip2412_backend.entity.Subject" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_subject (name, create_time, update_time)
+        VALUES (#{name}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.hclx.vip2412_backend.entity.Subject">
+        UPDATE sys_subject
+        <set>
+            <if test="name != null">name = #{name},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM sys_subject WHERE id = #{id}
+    </delete>
+
+</mapper>

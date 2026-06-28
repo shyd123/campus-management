@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.ClassroomDao">
+
+    <resultMap id="classroomMap" type="com.hclx.vip2412_backend.entity.Classroom">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="location" property="location" />
+        <result column="row_count" property="rowCount" />
+        <result column="col_count" property="colCount" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="classroomMap">
+        SELECT * FROM sys_classroom
+    </select>
+
+    <select id="selectById" resultMap="classroomMap">
+        SELECT * FROM sys_classroom WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.hclx.vip2412_backend.entity.Classroom" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_classroom (name, location, create_time, update_time)
+        VALUES (#{name}, #{location}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.hclx.vip2412_backend.entity.Classroom">
+        UPDATE sys_classroom
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="rowCount != null">row_count = #{rowCount},</if>
+            <if test="colCount != null">col_count = #{colCount},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM sys_classroom WHERE id = #{id}
+    </delete>
+
+</mapper>

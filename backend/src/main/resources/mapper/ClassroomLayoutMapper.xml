@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.ClassroomLayoutDao">
+
+    <resultMap id="classroomLayoutMap" type="ClassroomLayout">
+        <id column="id" property="id" />
+        <result column="classroom_id" property="classroomId" />
+        <result column="row" property="row" />
+        <result column="col" property="col" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectByClassroomId" resultMap="classroomLayoutMap">
+        SELECT * FROM sys_classroom_layout WHERE classroom_id = #{classroomId}
+    </select>
+
+    <insert id="batchInsert">
+        INSERT INTO sys_classroom_layout (classroom_id, `row`, `col`, status, create_time, update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.classroomId}, #{item.row}, #{item.col}, #{item.status}, NOW(), NOW())
+        </foreach>
+    </insert>
+
+    <delete id="deleteByClassroomId">
+        DELETE FROM sys_classroom_layout WHERE classroom_id = #{classroomId}
+    </delete>
+
+</mapper>

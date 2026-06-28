@@ -1,0 +1,1133 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* 登录页面样式 */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-box h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1890ff;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #40a9ff;
+}
+
+.message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message.error {
+    background-color: #fff2f0;
+    color: #ff4d4f;
+    border: 1px solid #ffccc7;
+}
+
+.message.success {
+    background-color: #f6ffed;
+    color: #52c41a;
+    border: 1px solid #b7eb8f;
+}
+
+/* 主页面样式 */
+.header {
+    background-color: #1890ff;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header h2 {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info span {
+    margin-right: 15px;
+}
+
+.header .logout-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.header .logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 侧边栏样式 */
+.sidebar {
+    width: 200px;
+    background-color: white;
+    border-right: 1px solid #e8e8e8;
+    height: calc(100vh - 64px);
+    position: fixed;
+    left: 0;
+    top: 64px;
+    padding: 20px 0;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 5px;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f0f2f5;
+    color: #1890ff;
+}
+
+.sidebar ul li a.active {
+    background-color: #e6f7ff;
+    color: #1890ff;
+    border-right: 3px solid #1890ff;
+}
+
+.sidebar ul li a.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.sidebar ul li a.disabled:hover {
+    background-color: transparent;
+    color: #ccc;
+}
+
+/* 内容区域样式 */
+.content {
+    margin-left: 200px;
+    padding: 20px;
+    min-height: calc(100vh - 64px);
+    background-color: #f5f5f5;
+}
+
+.content-header {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+}
+
+.content-header h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* 卡片样式 */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    margin-bottom: 20px;
+}
+
+.card.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.today-header {
+    background-color: #e6f7ff;
+    border-bottom: 1px solid #91d5ff;
+}
+
+.today-header h4 {
+    color: #1890ff;
+}
+
+.future-header {
+    background-color: #f6ffed;
+    border-bottom: 1px solid #b7eb8f;
+}
+
+.future-header h4 {
+    color: #52c41a;
+}
+
+.past-header {
+    background-color: #fff7e6;
+    border-bottom: 1px solid #ffe58f;
+}
+
+.past-header h4 {
+    color: #faad14;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* 座位图表样式 */
+.classroom-layout {
+    margin: 20px 0;
+}
+
+/* 座位图例样式 */
+.seat-legend {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.seat-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.seat-legend .legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+.seat-legend .legend-color.empty {
+    background-color: #f5f5f5;
+}
+
+.seat-legend .legend-color.seat {
+    background-color: #e6f7ff;
+}
+
+.seat-legend .legend-color.teacher-desk {
+    background-color: #fff7e6;
+}
+
+.seat-legend .legend-color.present {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 2px solid #52c41a;
+}
+
+.seat-legend .legend-color.absent {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 2px solid #ff4d4f;
+}
+
+.seat-legend .legend-color.late {
+    background-color: rgba(255, 255, 0, 0.1);
+    border: 2px solid #faad14;
+}
+
+.seat-legend .legend-color.leave {
+    background-color: rgba(128, 0, 128, 0.1);
+    border: 2px solid #722ed1;
+}
+
+.legend {
+    margin-bottom: 20px;
+}
+
+.legend h5 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.legend-item {
+    display: inline-block;
+    margin-right: 20px;
+    align-items: center;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.legend-color.empty {
+    background-color: #f5f5f5;
+}
+
+.legend-color.seat {
+    background-color: #e6f7ff;
+}
+
+.legend-color.teacher-desk {
+    background-color: #fff7e6;
+}
+
+.layout-grid {
+    display: inline-block;
+    border: 2px solid #d9d9d9;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.layout-row {
+    display: flex;
+}
+
+.layout-cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+.layout-cell.empty {
+    background-color: #f5f5f5;
+}
+
+.layout-cell.seat {
+    background-color: #e6f7ff;
+}
+
+.layout-cell.teacher-desk {
+    background-color: #fff7e6;
+}
+
+.layout-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.seat-cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 2px;
+    border-radius: 4px;
+    background-color: #e6f7ff;
+}
+
+.seat-cell.empty {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.seat-cell.teacher-desk {
+    background-color: #fff7e6;
+    cursor: not-allowed;
+}
+
+.seat-cell .student-name {
+    font-size: 12px;
+    color: #333;
+}
+
+.seat-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.seat-cell.empty:hover,
+.seat-cell.teacher-desk:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 8px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    background-color: #1890ff;
+    color: white;
+    border-color: #1890ff;
+}
+
+.btn-primary:hover {
+    background-color: #40a9ff;
+    border-color: #40a9ff;
+}
+
+.btn-default {
+    background-color: white;
+    color: #333;
+}
+
+.btn-default:hover {
+    border-color: #1890ff;
+    color: #1890ff;
+}
+
+/* 表格样式 */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: fixed;
+}
+
+.table th {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #e8e8e8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #fafafa;
+    font-weight: bold;
+    color: #333;
+    border-right: none;
+}
+
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 最后一列没有右边框 */
+.table th:last-child,
+.table td:last-child {
+    border-right: none;
+}
+
+/* 固定列宽 - 考勤管理页面 */
+#attendance-table th:nth-child(1),
+#attendance-table td:nth-child(1) {
+    width: 15%; /* 学生姓名 */
+}
+
+#attendance-table th:nth-child(2),
+#attendance-table td:nth-child(2) {
+    width: 35%; /* 状态 */
+}
+
+#attendance-table th:nth-child(3),
+#attendance-table td:nth-child(3) {
+    width: 50%; /* 备注 */
+}
+
+.table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* 当日课程高亮样式 */
+.table tr.today-task {
+    background-color: #e6f7ff;
+    border-left: 4px solid #1890ff;
+    font-weight: 500;
+}
+
+.table tr.today-task:hover {
+    background-color: #bae7ff;
+}
+
+/* 表单样式 */
+.form {
+    margin-top: 20px;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    color: #666;
+}
+
+.form-row input,
+.form-row select {
+    padding: 8px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    width: 300px;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    outline: none;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* 图例样式 */
+.layout-legend {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fafafa;
+    border-radius: 4px;
+    border: 1px solid #e8e8e8;
+    display: block;
+}
+
+.layout-legend h4 {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.layout-legend .legend-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-cell {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.legend-cell.empty {
+    background-color: #f5f5f5;
+}
+
+.legend-cell.seat {
+    background-color: #e6f7ff;
+}
+
+.legend-cell.teacher-desk {
+    background-color: #fff7e6;
+}
+
+.legend-label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/* 教室布局样式 */
+.classroom-layout {
+    margin: 20px 0;
+}
+
+.layout-grid {
+    display: inline-block;
+    border: 2px solid #d9d9d9;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.layout-row {
+    display: flex;
+}
+
+.layout-cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+.layout-cell.empty {
+    background-color: #f5f5f5;
+}
+
+.layout-cell.seat {
+    background-color: #e6f7ff;
+}
+
+.layout-cell.teacher-desk {
+    background-color: #fff7e6;
+}
+
+.layout-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 座位安排样式 */
+.seat-arrangement {
+    margin: 20px 0;
+}
+
+.seat-cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 2px;
+    border-radius: 4px;
+    background-color: #e6f7ff;
+}
+
+.seat-cell.empty {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.seat-cell.teacher-desk {
+    background-color: #fff7e6;
+    cursor: not-allowed;
+}
+
+.seat-cell .student-name {
+    font-size: 12px;
+    color: #333;
+}
+
+.seat-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.seat-cell.empty:hover,
+.seat-cell.teacher-desk:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* 考勤记录样式 */
+.attendance-record {
+    margin: 20px 0;
+}
+
+.status-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.status-btn {
+    padding: 8px 20px;
+    border: 2px solid #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s;
+    background-color: white;
+    min-width: 80px;
+    text-align: center;
+}
+
+.status-btn:hover {
+    border-color: #1890ff;
+    color: #1890ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-btn.active {
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.status-btn[data-status="PRESENT"].active {
+    background-color: #52c41a;
+    border-color: #52c41a;
+}
+
+.status-btn[data-status="ABSENT"].active {
+    background-color: #ff4d4f;
+    border-color: #ff4d4f;
+}
+
+.status-btn[data-status="LATE"].active {
+    background-color: #faad14;
+    border-color: #faad14;
+}
+
+.status-btn[data-status="LEAVE"].active {
+    background-color: #722ed1;
+    border-color: #722ed1;
+}
+
+.status-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 备注输入框样式 */
+.attendance-remark {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 2px solid #d9d9d9;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s;
+    margin: 0 6px;
+}
+
+.attendance-remark:focus {
+    outline: none;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* 悬浮托盘样式 */
+.floating-tray {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    background-color: white;
+    border: 2px solid #1890ff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(24, 144, 255, 0.3);
+    padding: 15px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 120px;
+}
+
+.floating-tray::before {
+    content: "布局工具";
+    font-size: 14px;
+    font-weight: bold;
+    color: #1890ff;
+    text-align: center;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 托盘选项样式 */
+.tray-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.tray-option:hover {
+    border-color: #1890ff;
+    background-color: #f0f9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
+}
+
+/* 隐藏默认radio按钮 */
+.tray-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* 自定义radio按钮 */
+.tray-option span::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d9d9d9;
+    border-radius: 50%;
+    background-color: white;
+    transition: all 0.3s;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* 选中状态 */
+.tray-option input[type="radio"]:checked + span {
+    color: #1890ff;
+    font-weight: bold;
+}
+
+.tray-option input[type="radio"]:checked + span::before {
+    background-color: #1890ff;
+    border-color: #1890ff;
+    content: "✓";
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 16px;
+}
+
+.tray-option span {
+    flex: 1;
+    font-size: 14px;
+}
+
+.student-item {
+    padding: 12px;
+    background-color: #f0f9ff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    font-size: 14px;
+}
+
+.student-item:hover {
+    background-color: #e6f7ff;
+    border-color: #1890ff;
+    box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* 已分配座位的学生 */
+.student-assigned {
+    background-color: #f6ffed;
+    border-color: #52c41a;
+    position: relative;
+}
+
+.student-assigned::after {
+    content: '✓';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #52c41a;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* 响应式设计 - 平板和大屏手机 */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid #e8e8e8;
+        margin-top: 64px;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: 64px;
+    }
+
+    .header h2 {
+        font-size: 16px;
+    }
+
+    .header .user-info span {
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    .layout-cell,
+    .seat-cell {
+        width: 40px;
+        height: 40px;
+    }
+
+    .form-row input,
+    .form-row select {
+        width: 100%;
+    }
+
+    .floating-tray {
+        top: 100px;
+        right: 10px;
+        padding: 10px;
+        gap: 8px;
+        min-width: 100px;
+    }
+    
+    .floating-tray::before {
+        font-size: 12px;
+    }
+    
+    .tray-option {
+        padding: 8px 10px;
+    }
+    
+    .tray-option span {
+        font-size: 13px;
+    }
+    
+    .tray-option input[type="radio"]:checked + span::before {
+        font-size: 12px;
+    }
+
+    .split-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .split-left,
+    .split-right {
+        flex: 0 0 100% !important;
+        margin-bottom: 20px;
+    }
+
+    .split-handle {
+        display: none;
+    }
+}
+
+/* 响应式设计 - 小屏手机 */
+@media screen and (max-width: 480px) {
+    .header {
+        padding: 10px;
+        height: 80px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .header h2 {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .header .user-info {
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .header .user-info span {
+        font-size: 12px;
+        margin-right: 0;
+    }
+
+    .sidebar {
+        margin-top: 80px;
+    }
+
+    .content {
+        padding: 10px;
+        margin-top: 0;
+    }
+
+    .content-header {
+        padding: 15px;
+    }
+
+    .content-header h3 {
+        font-size: 16px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .layout-cell,
+    .seat-cell {
+        width: 30px;
+        height: 30px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+
+    .form-row label {
+        width: 80px;
+        font-size: 14px;
+    }
+
+    .floating-tray {
+        top: 90px;
+        right: 5px;
+        padding: 8px;
+        gap: 6px;
+        min-width: 80px;
+    }
+    
+    .floating-tray::before {
+        font-size: 10px;
+    }
+    
+    .tray-option {
+        padding: 6px 8px;
+    }
+    
+    .tray-option span {
+        font-size: 11px;
+    }
+
+    .student-item {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .split-container {
+        flex-direction: column;
+    }
+
+    .split-left,
+    .split-right {
+        flex: 0 0 100% !important;
+    }
+}
+
+/* 响应式设计 - 超小屏手机 */
+@media screen and (max-width: 360px) {
+    .header h2 {
+        font-size: 12px;
+    }
+
+    .content-header h3 {
+        font-size: 14px;
+    }
+
+    .layout-cell,
+    .seat-cell {
+        width: 25px;
+        height: 25px;
+    }
+
+    .form-row label {
+        width: 70px;
+        font-size: 12px;
+    }
+
+    .student-item {
+        padding: 8px;
+        font-size: 12px;
+    }
+}

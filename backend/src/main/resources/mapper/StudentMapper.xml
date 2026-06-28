@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.StudentDao">
+
+    <resultMap id="studentMap" type="Student">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="class_id" property="classId" />
+        <result column="class_name" property="className" />
+        <result column="student_id" property="studentId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="studentMap">
+        SELECT s.*, c.name AS class_name
+        FROM sys_student s
+        LEFT JOIN sys_class c ON s.class_id = c.id
+    </select>
+
+    <select id="selectById" resultMap="studentMap">
+        SELECT s.*, c.name AS class_name
+        FROM sys_student s
+        LEFT JOIN sys_class c ON s.class_id = c.id
+        WHERE s.id = #{id}
+    </select>
+
+    <select id="selectByClassId" resultMap="studentMap">
+        SELECT s.*, c.name AS class_name
+        FROM sys_student s
+        LEFT JOIN sys_class c ON s.class_id = c.id
+        WHERE s.class_id = #{classId}
+    </select>
+
+    <insert id="insert" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_student (name, student_id, class_id, create_time, update_time)
+        VALUES (#{name}, #{studentId}, #{classId}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="Student">
+        UPDATE sys_student
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="studentId != null">student_id = #{studentId},</if>
+            <if test="classId != null">class_id = #{classId},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM sys_student WHERE id = #{id}
+    </delete>
+
+</mapper>

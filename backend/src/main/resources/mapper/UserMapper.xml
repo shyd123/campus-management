@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.UserDao">
+
+    <resultMap id="userMap" type="User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="role" property="role" />
+        <result column="email" property="email" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectByUsername" resultMap="userMap">
+        SELECT * FROM sys_user WHERE username = #{username}
+    </select>
+
+    <select id="selectById" resultMap="userMap">
+        SELECT * FROM sys_user WHERE id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="userMap">
+        SELECT * FROM sys_user
+    </select>
+
+    <select id="selectByRole" resultMap="userMap">
+        SELECT * FROM sys_user WHERE role = #{role}
+    </select>
+
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (username, password, role, email, create_time, update_time)
+        VALUES (#{username}, #{password}, #{role}, #{email}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="User">
+        UPDATE sys_user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="role != null">role = #{role},</if>
+            <if test="email != null">email = #{email},</if>
+            update_time = NOW()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM sys_user WHERE id = #{id}
+    </delete>
+
+</mapper>

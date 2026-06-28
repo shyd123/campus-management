@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hclx.vip2412_backend.dao.AttendanceDao">
+
+    <resultMap id="attendanceMap" type="Attendance">
+        <id column="id" property="id" />
+        <result column="course_id" property="courseId" />
+        <result column="student_id" property="studentId" />
+        <result column="student_name" property="studentName" />
+        <result column="date" property="date" />
+        <result column="status" property="status" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <select id="selectByCourseIdAndDate" resultMap="attendanceMap">
+        SELECT a.*, s.name AS student_name
+        FROM sys_attendance a
+        LEFT JOIN sys_student s ON a.student_id = s.id
+        WHERE a.course_id = #{courseId} AND a.date = #{date}
+    </select>
+
+    <insert id="batchInsert">
+        INSERT INTO sys_attendance (course_id, student_id, student_name, date, status, remark, create_time, update_time)
+        VALUES
+        <foreach collection="records" item="record" separator=",">
+            (#{record.courseId}, #{record.studentId}, #{record.studentName}, #{record.date}, #{record.status}, #{record.remark}, NOW(), NOW())
+        </foreach>
+    </insert>
+
+    <delete id="deleteByCourseIdAndDate">
+        DELETE FROM sys_attendance WHERE course_id = #{courseId} AND date = #{date}
+    </delete>
+
+</mapper>

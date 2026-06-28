@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封闭式学校点名系统 - 教师</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <div class="header">
+        <h2>封闭式学校点名系统 - 教师</h2>
+        <div class="user-info">
+            <span id="user-info">欢迎，教师</span>
+            <button id="logout-btn" class="logout-btn">退出登录</button>
+        </div>
+    </div>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#teaching-tasks" class="active" onclick="switchTab('teaching-tasks')">授课任务</a></li>
+        </ul>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <!-- 授课任务 -->
+        <div id="teaching-tasks" class="tab-content">
+            
+            
+            <!-- 当天课程 -->
+            <div class="card mb-4">
+                <div class="card-header today-header">
+                    <h4>当天课程</h4>
+                </div>
+                <table class="table" id="today-task-table">
+                    <thead>
+                        <tr>
+                            <th>课程名称</th>
+                            <th>班级</th>
+                            <th>教室</th>
+                            <th>学科</th>
+                            <th>日期</th>
+                            <th>星期</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 动态生成当天任务列表 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 未来七天 -->
+            <div class="card mb-4">
+                <div class="card-header future-header">
+                    <h4>未来七天</h4>
+                </div>
+                <table class="table" id="future-task-table">
+                    <thead>
+                        <tr>
+                            <th>课程名称</th>
+                            <th>班级</th>
+                            <th>教室</th>
+                            <th>学科</th>
+                            <th>日期</th>
+                            <th>星期</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 动态生成未来任务列表 -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 过去七天 -->
+            <div class="card">
+                <div class="card-header past-header">
+                    <h4>过去七天</h4>
+                </div>
+                <table class="table" id="past-task-table">
+                    <thead>
+                        <tr>
+                            <th>课程名称</th>
+                            <th>班级</th>
+                            <th>教室</th>
+                            <th>学科</th>
+                            <th>日期</th>
+                            <th>星期</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 动态生成过去任务列表 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 考勤管理 -->
+        <div id="attendance-management" class="tab-content" style="display: none;">
+            <div class="content-header">
+                <h3>考勤管理</h3>
+                <div class="attendance-info">
+                    <span id="course-info" style="margin-right: 20px;"></span>
+                    <span id="date-info" style="margin-right: 20px;"></span>
+                    <span id="time-info" style="margin-right: 20px;"></span>
+                    <button class="btn btn-default" onclick="markAllPresent()">全选已到</button>
+                    <button id="save-attendance-btn" class="btn btn-primary" onclick="saveAttendance()">保存考勤</button>
+                </div>
+            </div>
+            
+            <!-- 座位图表 -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>座位表</h4>
+                </div>
+                <div class="card-body">
+                    <div class="classroom-layout">
+                        <div id="seat-layout">
+                            <!-- 动态生成座位布局 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="attendance-record">
+                    <table class="table" id="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>学生姓名</th>
+                                <th>状态</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 动态生成考勤记录 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/teacher.js"></script>
+</body>
+</html>
